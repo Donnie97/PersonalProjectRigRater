@@ -107,6 +107,10 @@ app.get('/api/final', (req, res) => {
   })
 })
 
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+});
+
 let PORT = process.env.PORT;
 app.listen(PORT, () => {
     console.log(`Listening on port: ${PORT}`);
