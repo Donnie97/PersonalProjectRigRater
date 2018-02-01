@@ -1,0 +1,8 @@
+.newInnerBody {
+    height: 350px;
+    width: 75%;
+    position: relative;
+    top: 150px;
+    border-right: 1px solid white; 
+    border-left: 1px solid white;
+}

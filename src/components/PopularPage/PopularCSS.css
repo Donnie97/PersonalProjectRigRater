@@ -1,0 +1,12 @@
+body{
+    background: linear-gradient(#1d1d1d 80%, #192231 20%);
+}
+.background {
+    width: 100%;
+    height: 400px;
+    background-color: black;
+}
+.Hamburger {
+    width: 100px;
+    height: 100px;
+}

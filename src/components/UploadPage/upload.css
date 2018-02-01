@@ -1,0 +1,83 @@
+body {
+    background: black;
+}
+.uploadAll {
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    color:#ffffff;
+    background-color:#1d1d1d;
+    background-size: cover;
+    font-family: play;
+    box-shadow: 0px 0px 40px 15px black;
+}
+.FileUpload {
+    height: 75px;
+    width: 200px;
+    margin-top: 125px;
+    background-color: #98878F;
+    border: 2px solid  #ffffff;
+    text-align: center;
+    color: #1d1d1d 
+}
+.showText {
+    padding-top: 10px;
+    font-size: 25px;
+    text-align: center;
+}
+.showcaseImg {
+    width: 75%;
+    height: 150px;
+    border: 2px solid #ffffff;
+    padding: 5px;
+}
+.center {
+    display: flex;
+    justify-content: center;
+}
+.hardwareSpecs {
+    padding-top: 10px;
+    font-size: 20px;
+    text-align: center;
+}
+.uploadInput { 
+    width: 60%;
+    height: 20px;
+    background-color: #98878F;
+    border: 1px solid #ffffff;
+    color: #1d1d1d;
+}
+.allSpecs {
+    
+}
+.saveButton {
+
+}
+
+@media (min-width: 200px) {
+
+}
+
+@media (min-width: 768px) {
+    .uploadAll {
+        width: 60%;
+        border-right: 1px solid #ffffff;
+        border-left: 1px solid #ffffff;
+    }
+    .showcaseImg {
+        width: 200px;
+        height:200px;
+    }
+    .uploadInput {
+        width: 25%;
+    }
+}
+
+@media (min-width: 992px) {
+    .showcaseImg {
+        width: 250px;
+        height: 250px;
+    }
+}
