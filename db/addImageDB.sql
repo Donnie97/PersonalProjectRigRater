@@ -6,7 +6,8 @@ insert into Hardware (
     motherboard,
     processor,
     compcase,
-    powersupply
+    powersupply,
+    titlename
 )
-values($1, $2, $3, $4, $5, $6, $7, $8)
+values($1, $2, $3, $4, $5, $6, $7, $8, $9)
 returning *

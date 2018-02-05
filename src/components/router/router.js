@@ -4,7 +4,8 @@ import HomePage from '../HomePage/HomePage';
 import NavBar from '../NavBar/NavBar';
 import Popular from '../PopularPage/Popular';
 import New from '../NewPage/NewPage';
-import Upload from '../UploadPage/upload'
+import Upload from '../UploadPage/upload';
+import Edit from '../EditPage/editPage'
 
 class Routing extends Component {
     render(){
@@ -16,6 +17,7 @@ class Routing extends Component {
                     <Route path='/popular' component={Popular}/>
                     <Route path='/new' component={New}/>
                     <Route path='/upload' component={Upload}/>
+                    <Route path='/edit' component={Edit}/>
                 </Switch>
             </div>
         )

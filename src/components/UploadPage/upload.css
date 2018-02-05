@@ -1,5 +1,5 @@
 body {
-    background: black;
+    background:black;
 }
 .uploadAll {
     align-items: center;
@@ -12,6 +12,7 @@ body {
     background-size: cover;
     font-family: play;
     box-shadow: 0px 0px 40px 15px black;
+    padding-bottom: 20px;
 }
 .FileUpload {
     height: 75px;
@@ -46,14 +47,20 @@ body {
     width: 60%;
     height: 20px;
     background-color: #98878F;
-    border: 1px solid #ffffff;
+    border: 1px solid #1d1d1d ;
     color: #1d1d1d;
 }
 .allSpecs {
     
 }
 .saveButton {
-
+    width: 80px;
+    height: 25px;
+    font-family: play;
+    color: white;
+    background-color: #1d1d1d;
+    border: 1px solid white;
+    border-radius: 10px;
 }
 
 @media (min-width: 200px) {

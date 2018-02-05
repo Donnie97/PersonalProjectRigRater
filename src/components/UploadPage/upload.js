@@ -19,6 +19,7 @@ class Upload extends React.Component {
 
         this.state = {
             uploadedFileCloudinaryUrl: '',
+            titleName: '',
             compcase: '',
             processor: '',
             gpu: '',
@@ -34,6 +35,7 @@ class Upload extends React.Component {
             monitor: '',
         };
         this.updateCase = this.updateCase.bind(this)
+        this.updateTitle = this.updateTitle.bind(this)
         this.updateGPU = this.updateGPU.bind(this)
         this.updateMotherboard = this.updateMotherboard.bind(this)
         this.updatePowerSupply = this.updatePowerSupply.bind(this)
@@ -74,6 +76,7 @@ class Upload extends React.Component {
     onpress() {
         var user = {
             img: this.state.uploadedFileCloudinaryUrl,
+            titleName: this.state.titleName,
             authID: this.props.user.auth_id,
             gpu: this.state.gpu,
             ram: this.state.ram,
@@ -102,6 +105,11 @@ class Upload extends React.Component {
     updateCase = (val) => {
         this.setState({
             compcase: val
+        })
+    }
+    updateTitle = (val) => {
+        this.setState({
+            titleName: val
         })
     }
     updateProcessor(val) {
@@ -193,7 +201,10 @@ class Upload extends React.Component {
 
                         
 
-                        
+                        <p className='hardwareSpecs'>Name of Setup</p>
+                            <br></br>
+                            <input onChange={(e) => this.updateTitle(e.target.value)} value={this.state.titleName} className='uploadInput'></input>
+
                             <p className='hardwareSpecs'>Case:</p>
                             <br></br>
                             <input onChange={(e) => this.updateCase(e.target.value)} value={this.state.compcase} className='uploadInput'></input>

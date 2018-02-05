@@ -1,5 +1,5 @@
 .wholeNav{
-    height: 100px;
+    height: 60px;
     width: 100%;
     background-color: #1d1d1d;
     color: #ffffff;
@@ -11,6 +11,7 @@
     position: fixed;
     box-shadow: 1px 1px 10px 2px black;   
     font-family: play; 
+    z-index: 1;
 }
 
 .logo {
@@ -21,8 +22,8 @@
     align-items: center;
 }
 .icon {
-    height: 100px;
-    width: 100px;
+    height: 55px;
+    width: 55px;
     /* margin: auto; */
 }
 
@@ -120,10 +121,10 @@
     background: #1d1d1d;
     position: absolute;
     right: 0px;
-    top: 100px;
+    top: 60px;
     transition: .5s;
     overflow: hidden;
-    opacity: 0;
+    /* opacity: 0; */
 }
 
 
@@ -171,6 +172,9 @@
 }
 
 @media (min-width: 768px) {
+    .wholeNav {
+        height: 100px;
+    }
     .hamMenu {
         display: none;
     }
@@ -179,6 +183,10 @@
     }
     .tabs {
         display: flex;
+    }
+    .icon {
+        height: 100px;
+        width: 100px;
     }
 }
 

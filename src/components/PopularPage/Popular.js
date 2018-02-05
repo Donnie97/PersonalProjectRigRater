@@ -11,7 +11,10 @@ class Popular extends Component {
     componentDidMount() {
         this.props.getUserInfo();
 
-        axios.get('/api/final').then(res => {
+        axios.get('/api/edit').then(res => {
+            this.setState({
+                updateStuff: res.data
+            })
             console.log(res)
         })
     }

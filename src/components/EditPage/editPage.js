@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import axios from 'axios';
+import './editPage.css'
+import '../NewPage/NewPageCSS.css';
+import NavBar from '../NavBar/NavBar';
 import { connect } from 'react-redux';
 import { getUserInfo } from '../../ducks/user';
-import './NewPageCSS.css';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import SwipeableViews from 'react-swipeable-views';
 import Rater from 'react-rater-plus';
-import NavBar from '../NavBar/NavBar';
-import Zooming from 'zooming';
 
 const styles = {
     headline: {
@@ -22,32 +22,36 @@ const styles = {
     },
 };
 
-const zooming = new Zooming()
 
-zooming.config({
-  customSize: { width: 800, height: 400},
-  zIndex: 1200 
-})
-
-class New extends Component {
+class Popular extends Component {
 
     constructor(props) {
         super(props);
 
-        this.state = {
+        this.state= {
             slideIndex: 0,
-            computerStuff: [],
+            id: this.props.user.auth_id,
+            computerStuff: []
         }
-        this.handleRate = this.handleRate.bind(this)
     }
 
     componentDidMount() {
-        this.props.getUserInfo()
+        this.props.getUserInfo();
 
-        axios.get('/api/final').then(res => {
+        axios.get('/api/edit').then(res => {
             this.setState({
                 computerStuff: res.data
+                
             })
+            console.log(res)
+        })
+    }
+
+    onpress(i) {
+        const id = this.state.computerStuff[i].hardwareid
+        const hardware_id = {id: id}
+
+        axios.post('/api/delete', hardware_id).then(res => {
             console.log(res)
         })
     }
@@ -57,45 +61,22 @@ class New extends Component {
             slideIndex: val
         })
     }
-    handleRate = (val) => {
-        console.log(val)
-        var rate = {
-            rate: val
-        }
-        
-         axios.post('/rate', rate).then(res => {
-             console.log(res)
-         })
-    }
 
-    idCheck = (i) => {
-        var id = {
-            id: this.state.computerStuff[i].hardwareid
-        }
-
-        axios.post('/rate', id).then(res => {
-            console.log(res)
-        })
-        console.log(this.state.computerStuff[i])
-    }
-
-
-    render() {
+    render(){
+    
         const info = this.state.computerStuff.map((e, i) => {
             return (
-                <div className= 'borderBottom'>
+                <div>
                             <div className='outerIconImage'>
-                                <img src={e.img} alt='Profile Pic' className='profileShowcasePic' data-action='zoom'></img>
-                                    <p className='titleSetup'>{e.titlename}'s Setup</p>
+                                <img src={e.img} alt='Profile Pic' className='profileShowcasePic'></img>
+                            
+                            <p className='titleSetup'>{e.titlename}</p>
+                            
                             </div>
                     <div className='newCenter'>
                         <div className='widths'>
                             <div className='newInnerBody'>
-
-
                             <img src={e.image} alt='Computer Setup' className='showcaseImages'></img>
-
-                        
 
                             </div>
                         </div>
@@ -145,20 +126,24 @@ class New extends Component {
                         </SwipeableViews>
 
                     </div>
+                    <div className='center'>
+                    <button onClick={() => this.onpress(i)} className='deleteButton'>DELETE</button>
+                    </div>
                 </div>
             )
         })
 
+
         return (
             <div>
-                <NavBar />
-               <div className='padding'>
+                <NavBar/>
+                <div className='padding'>
                 {info}
                 </div>
             </div>
-        )
+        ) 
     }
-}
+} 
 
 function mapStateToProps(state) {
     return {
@@ -166,4 +151,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { getUserInfo })(New);
+export default connect( mapStateToProps, { getUserInfo })(Popular);

@@ -54,6 +54,13 @@ passport.use(new Auth0Strategy({
    }
   })
 
+  app.get('/api/edit', (req, res) => {
+    const db = req.app.get('db')
+    db.updateJoinTable([user_id]).then(resp => {
+      console.log(resp)
+      res.status(200).send(resp)
+    })
+  })  
 
 }));
 
@@ -90,14 +97,23 @@ app.get('/auth/logout', (req, res) => {
 
 app.post('/api/cloudinaryImage', (req, res) => { 
   const db = req.app.get('db')
-  const {img, authID, gpu, ram, motherboard, processor, compcase, powersupply, mice, keyboard, headset, microphone, mousepad, monitor} = req.body
-  db.addImageDB([img, authID, gpu, ram, motherboard, processor, compcase, powersupply]).then(resp => {
+  const {img, authID, gpu, ram, motherboard, processor, compcase, powersupply, mice, keyboard, headset, microphone, mousepad, monitor, titleName} = req.body
+  db.addImageDB([img, authID, gpu, ram, motherboard, processor, compcase, powersupply, titleName]).then(resp => {
     console.log('PLEASE HAVE INFO', resp); 
     db.peripheralsDB([mice, keyboard, headset, microphone, mousepad, monitor, resp[0].id]).then(resp => {
       res.status(200).send('added')
     })
   })
   console.log("Hardware", req.body);
+})
+
+app.post('/rate', (req, res) => {
+const db = req.app.get('db')
+const { rate, id } = req.body
+  db.raterInsert(rate).then(resp => {
+    console.log(req.body)
+    res.status(200).send(resp)
+  })
 })
 
 app.get('/api/final', (req, res) => {
@@ -107,11 +123,17 @@ app.get('/api/final', (req, res) => {
   })
 })
 
-app.get('*', (req, res)=>{
-  res.sendFile(path.join(__dirname, '../build/index.html'));
-});
+app.post('/api/delete', (req, res) => {
+  const db = req.app.get('db')
+  console.log(req.body.id)
+  db.deleteRow([req.body.id]).then(resp => {
+    res.status(200).send(resp)
+  })
+})
 
-let PORT = process.env.PORT;
+
+
+let PORT = process.env.SERVER_PORT;
 app.listen(PORT, () => {
     console.log(`Listening on port: ${PORT}`);
 })    
